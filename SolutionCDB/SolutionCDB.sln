@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolutionCDB.Web.Server", "S
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "solutioncdb.web.client", "SolutionCDB.Web\solutioncdb.web.client\solutioncdb.web.client.esproj", "{5E062566-58E3-4D21-BFE8-053D4CFC54DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolutionCDB.Domain", "SolutionCDB.Domain\SolutionCDB.Domain.csproj", "{EBA57789-8AC0-4A57-8D28-B8CD9D324381}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{5E062566-58E3-4D21-BFE8-053D4CFC54DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E062566-58E3-4D21-BFE8-053D4CFC54DB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5E062566-58E3-4D21-BFE8-053D4CFC54DB}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{EBA57789-8AC0-4A57-8D28-B8CD9D324381}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBA57789-8AC0-4A57-8D28-B8CD9D324381}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBA57789-8AC0-4A57-8D28-B8CD9D324381}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBA57789-8AC0-4A57-8D28-B8CD9D324381}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
