@@ -16,21 +16,28 @@ namespace SolutionCDB.Web.Server.Controllers
         }
 
         [HttpPost("Calcular")]
-        public async Task<ResponseDto> CalcularCdb(RequestInvestimento request)
+        public async Task<IActionResult> CalcularCdb(RequestInvestimento request)
         {
             var resp = new ResponseDto();
 
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
                 resp.dados = await _cdbService.CalcularCdb(request);
                 resp.sucesso = resp.dados != null;
-                return resp;
+
+                return Ok(resp);
             }
             catch (Exception ex)
             {
                 resp.sucesso = false;
                 resp.mensagem = ex.Message.ToString();
-                return resp;
+
+                return StatusCode(500, resp);
             }
             
         }
