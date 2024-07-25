@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SolutionCDB.Domain.Interfaces
 {
-    public interface ICdbService
+    public interface ICDBService
     {
         Task<ResponseInvestimento> CalcularCdb(RequestInvestimento request);
     }

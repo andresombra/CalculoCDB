@@ -9,8 +9,8 @@ namespace SolutionCDB.Web.Server.Controllers
     [Route("[controller]")]
     public class CdbController : ControllerBase
     {
-        private readonly ICdbService _cdbService;
-        public CdbController(ICdbService cdbService)
+        private readonly ICDBService _cdbService;
+        public CdbController(ICDBService cdbService)
         {
             _cdbService = cdbService;         
         }

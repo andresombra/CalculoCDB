@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<ICdbService, CdbService>();
+builder.Services.AddScoped<ICDBService, CdbService>();
 
 var app = builder.Build();
 

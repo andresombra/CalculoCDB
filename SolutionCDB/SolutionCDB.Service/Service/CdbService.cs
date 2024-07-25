@@ -8,12 +8,14 @@ using System.Threading.Tasks;
 
 namespace SolutionCDB.Service.Service
 {
-    public class CdbService : ICdbService
+    public class CdbService : ICDBService
     {
         private const double TaxaBase = 1.08;
         private const double Cdi = 0.009;
         public async Task<ResponseInvestimento> CalcularCdb(RequestInvestimento request)
         {
+            if (request.ValorInvestimento <= 0 || request.PrazoMes <= 0) return new ResponseInvestimento();
+
             double valorResultado = await CalcularValorFinalAsync(request.ValorInvestimento, request.PrazoMes);
             double valorLiquido = await CalcularValorLiquidoAsync(request.ValorInvestimento, valorResultado, request.PrazoMes);
 
