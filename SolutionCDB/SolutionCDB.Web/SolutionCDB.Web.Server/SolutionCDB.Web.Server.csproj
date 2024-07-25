@@ -17,6 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\SolutionCDB.Domain\SolutionCDB.Domain.csproj" />
+    <ProjectReference Include="..\..\SolutionCDB.Service\SolutionCDB.Service.csproj" />
     <ProjectReference Include="..\solutioncdb.web.client\solutioncdb.web.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>

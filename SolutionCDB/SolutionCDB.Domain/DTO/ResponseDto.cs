@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace SolutionCDB.Domain.DTO
 {
-    public class RequestInvestimento
+    public class ResponseDto
     {
-        public double ValorInvestimento { get; set; }
-        public int PrazoMes { get; set; }
+        public bool sucesso { get; set; }
+        public string mensagem { get; set; }
+        public object dados { get; set; }
     }
 }

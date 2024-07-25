@@ -16,13 +16,13 @@
     </div>
   </div>
 
-  <label>Valor Inicial:</label>
+  <label>Valor Inicial R$:</label>
   <input type="number" id="valorInicial" name="valorInicial" />
 
   <label>Prazo em Meses:</label>
   <input type="number" id="prazoMeses" name="prazoMeses" />
 
-  <button (click)="calcularInvestimento()">Calcular</button>
+  <button (click)="CalcularInvestimento()">Calcular</button>
 
   <div *ngIf="resultadoCalculado">
     <h2>Resultado</h2>
