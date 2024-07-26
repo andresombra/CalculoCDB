@@ -17,10 +17,10 @@ Projeto com NUnit.
 Para executar apenas baixar do git e abrir com Visual Studio 2022 a SolutuinCDB.sln e executar.
 
 ## 📋Observações
-*📌 Verificar no menu do Visual Studio em Projeto -> Configurar projetos de inicialização.
-*📌 Selecionar opção "Vários projetos de incialização"
-*📌 No projeto solutioncdb.web.client Selecionar na coluna Ação para "Iniciar".
-*📌 No projeto SolutionCDB.Web.Server Selecionar na coluna Ação para "Iniciar".
+* Verificar no menu do Visual Studio em Projeto -> Configurar projetos de inicialização.
+* Selecionar opção "Vários projetos de incialização"
+* No projeto solutioncdb.web.client Selecionar na coluna Ação para "Iniciar".
+* No projeto SolutionCDB.Web.Server Selecionar na coluna Ação para "Iniciar".
 
 ```
 * Sendo assim será executado os dois projetos principais de frontend e Backend.
