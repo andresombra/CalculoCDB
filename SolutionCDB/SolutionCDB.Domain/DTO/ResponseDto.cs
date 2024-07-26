@@ -9,7 +9,7 @@ namespace SolutionCDB.Domain.DTO
     public class ResponseDto
     {
         public bool sucesso { get; set; }
-        public string mensagem { get; set; }
-        public object dados { get; set; }
+        public string? mensagem { get; set; }
+        public object? dados { get; set; }
     }
 }

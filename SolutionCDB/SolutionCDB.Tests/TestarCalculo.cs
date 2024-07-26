@@ -26,7 +26,7 @@ namespace SolutionCDB.Tests
         public void CalcularCdbDadosBasicos()
         {
 
-            var request = new RequestInvestimento() { ValorInvestimento=1000, PrazoMes=12 };
+            var request = new RequestInvestimento() { ValorInvestimento = 1000, PrazoMes = 12 };
 
             var response = _cdbService.CalcularCdb(request).Result;
 
@@ -57,6 +57,19 @@ namespace SolutionCDB.Tests
 
             Assert.True(response.ValorLiquido.Equals(0));
             Assert.True(response.ValorBruto.Equals(0));
+
+        }
+
+        [Test]
+        public void TestarCalculoVrInvestimento5000Prazomes24()
+        {
+
+            var request = new RequestInvestimento() { ValorInvestimento = 5000, PrazoMes = 24 };
+
+            var response = _cdbService.CalcularCdb(request).Result;
+
+            Assert.True(response.ValorLiquido.Equals(6077.917742130592));
+            Assert.True(response.ValorBruto.Equals(6306.566960158294));
 
         }
 
