@@ -14,6 +14,8 @@ namespace SolutionCDB.Service.Service
         private const double Cdi = 0.009;
         public async Task<ResponseInvestimento> CalcularCdb(RequestInvestimento request)
         {
+            if (request.ValorInvestimento <= 0 || request.PrazoMes <= 0) return new ResponseInvestimento();
+
             double valorResultado = await CalcularValorFinalAsync(request.ValorInvestimento, request.PrazoMes);
             double valorLiquido = await CalcularValorLiquidoAsync(request.ValorInvestimento, valorResultado, request.PrazoMes);
 
