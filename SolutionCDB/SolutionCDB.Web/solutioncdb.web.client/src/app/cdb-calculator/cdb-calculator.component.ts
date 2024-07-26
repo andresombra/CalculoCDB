@@ -17,17 +17,30 @@ export class CdbCalculatorComponent {
   constructor(private cdbService: CdbService) { }
 
   calcular() {
-    this.cdbService.calcularCdb(this.ValorInvestimento, this.PrazoMes).subscribe(
-      response => {
-        this.valorBruto = response.ValorBruto;
-        this.valorLiquido = response.ValorLiquido;
-        this.mensagemErro = null;
-      },
-      error => {
-        this.mensagemErro = error.message;
-        this.valorBruto = null;
-        this.valorLiquido = null;
-      }
-    );
+    if (this.ValorInvestimento <= 0) {
+      this.mensagemErro = 'O valor do Investimento deve ser maior que zero.';
+      return;
+    }
+    if (this.PrazoMes <= 0) {
+      this.mensagemErro = 'O valor do PrazoMes deve ser maior que zero.';
+      return;
+    }
+
+    this.mensagemErro = '';
+
+
+      this.cdbService.calcularCdb(this.ValorInvestimento, this.PrazoMes).subscribe(
+        response => {
+          this.valorBruto = response.ValorBruto;
+          this.valorLiquido = response.ValorLiquido;
+          this.mensagemErro = null;
+        },
+        error => {
+          this.mensagemErro = error.message;
+          this.valorBruto = null;
+          this.valorLiquido = null;
+        }
+      );
+    
   }
 }

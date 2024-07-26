@@ -28,6 +28,7 @@ export class CdbService {
 
   calcularCdb(ValorInvestimento: number, PrazoMes: number): Observable<{ ValorBruto: number, ValorLiquido: number }> {
     const requestBody: CdbRequest = { ValorInvestimento, PrazoMes };
+
     return this.http.post<ResponseDto>(this.apiUrl, requestBody).pipe(
       map(response => {
         if (response.sucesso && response.dados) {
