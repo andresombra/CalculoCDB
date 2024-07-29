@@ -1,6 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿using FluentValidation.TestHelper;
+using Newtonsoft.Json;
 using SolutionCDB.Domain.DTO;
 using SolutionCDB.Domain.Interfaces;
+using SolutionCDB.Domain.Validator;
 using SolutionCDB.Service.Service;
 using System.Drawing;
 using System.Net;
@@ -13,11 +15,13 @@ namespace SolutionCDB.Tests
     public class TestePrazoMeses
     {
         CdbService _cdbService;
+        RequestInvestimentoValidator _validator;
 
         [SetUp]
         public void Setup()
         {
             _cdbService = new CdbService();
+            _validator = new RequestInvestimentoValidator();
         }
 
         [Test]
@@ -44,37 +48,23 @@ namespace SolutionCDB.Tests
         }
 
         [Test]
-        [TestCase(0,0, "O valor de investimento deve ser maior que zero.")]
-        public async Task DeveRetornarMsgValidacaoValorInvestimento(double valorInvestimento, int prazoMes, string mensagemValidator)
+        public void DeveFalharSeValorInvestimentoZero()
         {
-            var client = new HttpClient();
-            client.BaseAddress = new System.Uri("https://localhost:7096");
+            var request = new RequestInvestimento() { ValorInvestimento = 0, PrazoMes = 12 };
 
-            var postData = new RequestInvestimento() { ValorInvestimento = valorInvestimento, PrazoMes= prazoMes };
+            var result = _validator.TestValidate(request);
 
-            var content = new StringContent(JsonConvert.SerializeObject(postData), Encoding.UTF8, "application/json");
-            var response = await client.PostAsJsonAsync("/Cdb/Calcular", content).Result.Content.ReadFromJsonAsync<ResponseDto>();
-
-            Assert.That(response.mensagem, Is.EqualTo(mensagemValidator));
-
+            result.ShouldHaveValidationErrorFor(p => p.ValorInvestimento).WithErrorMessage("O valor de investimento deve ser maior que zero.");
         }
 
         [Test]
-        [TestCase(1, 0, "O prazo mes deve ser maior que 1.")]
-        public async Task DeveRetornarMsgValidacaoPrazoMes(double valorInvestimento, int prazoMes, string mensagemValidator)
+        public void DeveFalharSePrazoMesMenorOuIgualUm()
         {
-            var client = new HttpClient();
-            client.BaseAddress = new System.Uri("https://localhost:7096");
+            var request = new RequestInvestimento() { ValorInvestimento = 1000, PrazoMes = 0 };
 
-            var postData = new RequestInvestimento() { ValorInvestimento = valorInvestimento, PrazoMes = prazoMes };
+            var result = _validator.TestValidate(request);
 
-            var content = new StringContent(JsonConvert.SerializeObject(postData), Encoding.UTF8, "application/json");
-            var response = await client.PostAsJsonAsync("/Cdb/Calcular", content).Result.Content.ReadFromJsonAsync<ResponseDto>();
-
-            Assert.That(response.mensagem, Is.EqualTo(mensagemValidator));
-
+            result.ShouldHaveValidationErrorFor(p => p.PrazoMes).WithErrorMessage("O prazo mes deve ser maior que 1.");
         }
-
-
     }
 }
