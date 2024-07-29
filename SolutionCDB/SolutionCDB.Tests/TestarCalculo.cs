@@ -1,13 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
-using NUnit.Framework;
-using SolutionCDB.Domain.DTO;
-using SolutionCDB.Domain.Interfaces;
+﻿using SolutionCDB.Domain.DTO;
 using SolutionCDB.Service.Service;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SolutionCDB.Tests
 {
@@ -23,6 +15,23 @@ namespace SolutionCDB.Tests
         }
 
         [Test]
+        [TestCase(0, 0)]
+        [TestCase(5000, 0)]
+        [TestCase(0, 1)]
+        public void ValidarDadosRequest(double valorInvestimento, int prazoMes)
+        {
+
+            var request = new RequestInvestimento() { ValorInvestimento = valorInvestimento, PrazoMes = prazoMes };
+
+            var response = _cdbService.CalcularCdb(request).Result;
+
+            Assert.IsNotNull(response);
+            Assert.True(response.ValorLiquido.Equals(0));
+            Assert.True(response.ValorBruto.Equals(0));
+
+        }
+
+        [Test]
         public void CalcularCdbDadosBasicos()
         {
 
@@ -31,6 +40,9 @@ namespace SolutionCDB.Tests
             var response = _cdbService.CalcularCdb(request).Result;
 
             Assert.IsNotNull(response);
+            Assert.True(response.ValorLiquido > 0);
+            Assert.True(response.ValorBruto > 0);
+
 
         }
 

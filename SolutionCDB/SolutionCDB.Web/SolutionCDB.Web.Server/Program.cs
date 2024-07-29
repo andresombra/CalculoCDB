@@ -1,4 +1,8 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using SolutionCDB.Domain.DTO;
 using SolutionCDB.Domain.Interfaces;
+using SolutionCDB.Domain.Validator;
 using SolutionCDB.Service.Service;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +26,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<ICDBService, CdbService>();
+
+builder.Services.AddScoped<IValidator<RequestInvestimento>, RequestInvestimentoValidator>();
 
 var app = builder.Build();
 

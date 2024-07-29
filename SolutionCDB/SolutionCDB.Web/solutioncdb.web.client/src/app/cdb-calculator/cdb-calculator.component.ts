@@ -19,10 +19,14 @@ export class CdbCalculatorComponent {
   calcular() {
     if (this.ValorInvestimento <= 0) {
       this.mensagemErro = 'O valor do Investimento deve ser maior que zero.';
+      this.valorBruto = null;
+      this.valorLiquido = null;
       return;
     }
-    if (this.PrazoMes <= 0) {
-      this.mensagemErro = 'O valor do PrazoMes deve ser maior que zero.';
+    if (this.PrazoMes <= 1) {
+      this.mensagemErro = 'O valor do PrazoMes deve ser maior que 1.';
+      this.valorBruto = null;
+      this.valorLiquido = null;
       return;
     }
 
@@ -36,7 +40,7 @@ export class CdbCalculatorComponent {
           this.mensagemErro = null;
         },
         error => {
-          this.mensagemErro = error.message;
+          this.mensagemErro = error.error.mensagem;
           this.valorBruto = null;
           this.valorLiquido = null;
         }
