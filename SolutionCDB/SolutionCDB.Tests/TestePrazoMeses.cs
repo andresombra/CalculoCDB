@@ -47,6 +47,17 @@ namespace SolutionCDB.Tests
             Assert.AreEqual(valorLiquido, response.ValorLiquido, tolerance);
         }
 
+
+        [Test]
+        public void DeveRetornarValido()
+        {
+            var request = new RequestInvestimento() { ValorInvestimento = 1000, PrazoMes = 12 };
+
+            var result = _validator.TestValidate(request);
+
+            Assert.IsTrue(result.IsValid);
+        }
+
         [Test]
         public void DeveFalharSeValorInvestimentoZero()
         {
