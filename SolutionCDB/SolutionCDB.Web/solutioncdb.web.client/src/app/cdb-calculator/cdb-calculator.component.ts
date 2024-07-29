@@ -22,7 +22,7 @@ export class CdbCalculatorComponent {
       return;
     }
     if (this.PrazoMes <= 0) {
-      this.mensagemErro = 'O valor do PrazoMes deve ser maior que zero.';
+      this.mensagemErro = 'O valor do PrazoMes deve ser maior que 1.';
       return;
     }
 

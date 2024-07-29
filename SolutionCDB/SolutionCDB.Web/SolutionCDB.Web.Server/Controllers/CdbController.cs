@@ -37,7 +37,7 @@ namespace SolutionCDB.Web.Server.Controllers
                 resp.sucesso = false;
                 resp.mensagem = ex.Message.ToString();
 
-                return StatusCode(500, resp);
+                return StatusCode(400, resp);
             }
             
         }
