@@ -28,7 +28,7 @@ namespace SolutionCDB.Tests
         [TestCase(1000,6, 1059.7556770148981, 1046.310649686546)]
         [TestCase(1000,12, 1123.0820949653053, 1098.4656759722443)]
         [TestCase(1000,24, 1261.31339203165, 1215.5835484261183)]
-        [TestCase(1000,36, 1416.558486730710, 1354.0747137211038)]
+        
         public void CalcularCdbDadosBasicos(double valorInvestimento, int prazoMes, double valorBruto, double valorLiquido)
         {
 
@@ -45,6 +45,25 @@ namespace SolutionCDB.Tests
 
             Assert.AreEqual(valorBruto, response.ValorBruto, tolerance);
             Assert.AreEqual(valorLiquido, response.ValorLiquido, tolerance);
+        }
+
+        [Test]
+        public void CalcularCdbAcimaDe24meses()
+        {
+
+            var request = new RequestInvestimento() { ValorInvestimento = 1000, PrazoMes = 36 };
+
+            var response = _cdbService.CalcularCdb(request).Result;
+
+            Assert.IsNotNull(response);
+
+            Assert.Greater(response.ValorLiquido, 0);
+            Assert.Greater(response.ValorBruto, 0);
+
+            double tolerance = 0.0001;
+
+            Assert.AreEqual(1416.558486730710, response.ValorBruto, tolerance);
+            Assert.AreEqual(1354.0747137211038, response.ValorLiquido, tolerance);
         }
 
 
