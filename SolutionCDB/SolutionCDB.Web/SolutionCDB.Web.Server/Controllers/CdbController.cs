@@ -33,7 +33,8 @@ namespace SolutionCDB.Web.Server.Controllers
                 if (!result.IsValid)
                 {
                     result.AddToModelState(this.ModelState);
-                    return BadRequest(ModelState);
+                    resp.mensagem = result.Errors[0].ErrorMessage;
+                    return BadRequest(resp);
                 }
 
                 resp.dados = await _cdbService.CalcularCdb(request);

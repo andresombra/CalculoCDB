@@ -12,6 +12,9 @@ namespace SolutionCDB.Domain.Validator
     {
         public RequestInvestimentoValidator()
         {
+
+            CascadeMode = CascadeMode.StopOnFirstFailure;
+
             RuleFor(x => x.ValorInvestimento).NotNull();
             RuleFor(x => x.ValorInvestimento)
                 .GreaterThan(0)
