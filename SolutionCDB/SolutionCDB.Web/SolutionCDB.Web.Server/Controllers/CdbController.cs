@@ -1,6 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation;
+using FluentValidation.AspNetCore;
+using FluentValidation.Results;
+using Microsoft.AspNetCore.Mvc;
 using SolutionCDB.Domain.DTO;
 using SolutionCDB.Domain.Interfaces;
+using System;
 using System.Net;
 
 namespace SolutionCDB.Web.Server.Controllers
@@ -10,9 +14,11 @@ namespace SolutionCDB.Web.Server.Controllers
     public class CdbController : ControllerBase
     {
         private readonly ICDBService _cdbService;
-        public CdbController(ICDBService cdbService)
+        private readonly IValidator<RequestInvestimento> _validator;
+        public CdbController(ICDBService cdbService, IValidator<RequestInvestimento> validator)
         {
             _cdbService = cdbService;         
+            _validator = validator;
         }
 
         [HttpPost("Calcular")]
@@ -22,8 +28,11 @@ namespace SolutionCDB.Web.Server.Controllers
 
             try
             {
-                if (!ModelState.IsValid)
+                ValidationResult result = await _validator.ValidateAsync(request);
+
+                if (!result.IsValid)
                 {
+                    result.AddToModelState(this.ModelState);
                     return BadRequest(ModelState);
                 }
 
@@ -37,7 +46,7 @@ namespace SolutionCDB.Web.Server.Controllers
                 resp.sucesso = false;
                 resp.mensagem = ex.Message.ToString();
 
-                return StatusCode(400, resp);
+                return BadRequest(resp);
             }
             
         }
