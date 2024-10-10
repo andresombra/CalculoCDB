@@ -42,6 +42,7 @@ namespace SolutionCDB.Tests
 
             var response = _cdbService.CalcularCdb(request).Result;
 
+            Assert.IsNotNull(response);
             Assert.True(response.ValorLiquido.Equals(0));
             Assert.True(response.ValorBruto.Equals(0));
 
@@ -55,9 +56,10 @@ namespace SolutionCDB.Tests
 
             var response = _cdbService.CalcularCdb(request).Result;
 
+            Assert.IsNotNull(response);
             Assert.True(response.ValorLiquido.Equals(0));
             Assert.True(response.ValorBruto.Equals(0));
-
+            
         }
 
     }
