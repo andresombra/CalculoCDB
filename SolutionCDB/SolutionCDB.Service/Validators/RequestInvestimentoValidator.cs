@@ -10,10 +10,10 @@ namespace SolutionCDB.Service.Validators
         public RequestInvestimentoValidator()
         {
             RuleFor(x => x.ValorInvestimento)
-                .GreaterThan(0).WithMessage("O valor do investimento deve ser maior que zero.");
+                .GreaterThan(0).WithMessage("O valor de investimento deve ser maior que zero.");
 
             RuleFor(x => x.PrazoMes)
-                .GreaterThan(0).WithMessage("O prazo em meses deve ser maior que zero.");
+                .GreaterThan(0).WithMessage("O prazo mes deve ser maior que 1.");
         }
     }
 

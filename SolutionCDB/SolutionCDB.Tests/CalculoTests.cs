@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace SolutionCDB.Tests
 {
     [TestFixture]
-    public class TestarCalculo
+    public class CalculoTests
     {
         CdbService _cdbService;
 
