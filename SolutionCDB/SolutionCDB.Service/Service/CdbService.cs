@@ -21,7 +21,7 @@ namespace SolutionCDB.Service.Service
 
             return new ResponseInvestimento() { ValorBruto = valorResultado, ValorLiquido = valorLiquido };
         }
-        private async Task<double> CalcularValorFinalAsync(double valorInvestimento, int prazoMeses)
+        public async Task<double> CalcularValorFinalAsync(double valorInvestimento, int prazoMeses)
         {
             double valorFinal = valorInvestimento;
             for (int i = 0; i < prazoMeses; i++)
@@ -31,13 +31,13 @@ namespace SolutionCDB.Service.Service
             return await Task.FromResult(valorFinal);
         }
 
-        private async Task<double> CalcularValorLiquidoAsync(double valorInvestimento, double valorResultado, int prazoMeses)
+        public async Task<double> CalcularValorLiquidoAsync(double valorInvestimento, double valorResultado, int prazoMeses)
         {
             double taxaImposto = await RetornaTaxaImpostoAsync(prazoMeses);
             return valorResultado - (valorResultado - valorInvestimento) * taxaImposto;
         }
 
-        private async Task<double> RetornaTaxaImpostoAsync(int prazoMeses)
+        public async Task<double> RetornaTaxaImpostoAsync(int prazoMeses)
         {
             return await Task.FromResult(prazoMeses) switch
             {
